@@ -28,6 +28,10 @@ class BootReceiver : BroadcastReceiver() {
             // todo check nullable context
             saveDataToDb(context, action, extras)
             setNotificationWorker(context)
+
+            //show notification now
+            val notificationManager = BootNotificationManager(context)
+            notificationManager.showBootNotification()
         }
 
     }
@@ -52,6 +56,8 @@ class BootReceiver : BroadcastReceiver() {
                     ?: "NotificationWorker", // todo change the name
                 ExistingPeriodicWorkPolicy.KEEP, notificationWorker
             )
+        Log.d("NotificationWorker", "NotificationWorker was set from BootReceiver")
+
     }
 
 

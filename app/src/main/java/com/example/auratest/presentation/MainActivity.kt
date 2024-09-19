@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +15,7 @@ import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import com.example.auratest.data.SharedPrefs
 import com.example.auratest.databinding.ActivityMainBinding
+import com.example.auratest.domain.BootNotificationManager
 import com.example.auratest.domain.NotificationWorker
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -61,6 +63,9 @@ class MainActivity : AppCompatActivity() {
         // start the notification worker if it not started
         setNotificationWorker(this)
 
+        val notificationManager = BootNotificationManager(this)
+        notificationManager.showBootNotification()
+
     }
 
     private fun checkNotificationPermission() {
@@ -93,6 +98,7 @@ class MainActivity : AppCompatActivity() {
                     ?: "NotificationWorker", // todo change the name
                 ExistingPeriodicWorkPolicy.KEEP, notificationWorker
             )
+        Log.d("NotificationWorker", "NotificationWorker was set from activity")
     }
 
     private fun getDataFromDb(context: Context): String {

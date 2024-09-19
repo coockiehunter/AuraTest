@@ -51,8 +51,8 @@ dependencies {
 
     //work manager
     implementation(libs.androidx.work.runtime.ktx)
-    // notifications
-    implementation(libs.androidx.core.ktx.v220)
+//    // notifications
+//    implementation(libs.androidx.core.ktx.v220)
 
 
 
